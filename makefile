@@ -1,4 +1,4 @@
-all: subtract sum ls generate basic_shell
+all: subtract sum ls generate basicShell
 cleanFiles:
 	rm subtract.class ls.class generate.class sum.class run *.txt
 subtract:	
@@ -10,4 +10,4 @@ ls:
 generate:	
 	javac generate.java
 basic_shell:
-	gcc -o run basic_shell.c
+	gcc -o run basicShell.c

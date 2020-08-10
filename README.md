@@ -4,7 +4,7 @@ This project has been realized in the scope of the course CMPS 272 "Operating Sy
 
 ### Makefile arguments :
 
-- *all* : Compile  the main shell and all its sub-commands.  
+- *all* : Compile the main shell and all its commands.  
 
 - *cleanFiles*: Remove all generated files from previous compilations
 

@@ -8,7 +8,7 @@ This project has been realized in the scope of the course CMPS 272 "Operating Sy
 
 - *cleanFiles*: Remove all generated files from previous compilations
 
-### Supported commands :
+### Supported shell commands :
 
 - *ls* : List all files and folders in the current directory.
 

@@ -18,4 +18,4 @@ This project has been realized in the scope of the course CMPS 272 "Operating Sy
 
 - *subtract* : Takes two values, and outputs the difference.
 
-- *tee* : This command is directly implemented in the main shell in C, but it executes in another process with a fork and takes its input from the output of the other commands listed above.
+- *tee* : Using *tee* with another command will print out the output of that command to the shell, and also save it to a specified file. This command is directly implemented in the main shell in C.

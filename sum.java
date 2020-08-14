@@ -80,6 +80,50 @@ class sum {
                 e.printStackTrace();
             }
 
+        } else if (args[0].equals("pipeout")) {
+
+            // Prompt the user to enter two integers, check the validity of the user input, and print out the result of their addition while also sending it to stdout
+
+            int v1 = 0;
+            int v2 = 0;
+            boolean v1_correct = false;
+            boolean v2_correct = false;
+
+            while (!v1_correct) {
+                System.out.println("Input first Value");
+                String val1 = System.console().readLine();
+
+                if (val1.matches("^[+-]?\\d+$")) {
+                    v1_correct = true;
+                    v1 = Integer.valueOf(val1);
+
+                } else {
+                    System.out.println("Not a number!\n");
+                }
+            }
+
+            while (!v2_correct) {
+                System.out.println("Input second Value");
+                String val2 = System.console().readLine();
+
+                if (val2.matches("^[+-]?\\d+$")) {
+                    v2_correct = true;
+                    v2 = Integer.valueOf(val2);
+
+                } else {
+                    System.out.println("Not a number!\n");
+                }
+            }
+
+            System.out.println(String.valueOf(v1) + " + " + String.valueOf(v2) + " = " + String.valueOf(v1 + v2));
+
+            try {
+                BufferedWriter log = new BufferedWriter(new OutputStreamWriter(System.out));
+                log.write(String.valueOf(v1 + v2));
+                log.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ class generate {
 
         // Argument passed by the shell is either 'nopipe' or 'pipeout'
         // If 'nopipe' : Generated values will be displayed by the shell
-        // If 'pipeout' : Generated values will be passed as arguments to another command using pipes
+        // If 'pipeout' : Generated values will be passed as arguments to another command using pipes & stdout
 
         if (args[0].equals("nopipe")) {
 

@@ -403,7 +403,6 @@ int main()
                             }
                         }
                     }
-
                     else if (checkSubstring(commandcpy, subtract) == indexArgTwo) {
                         int pipefd[2];
                         pipe(pipefd);
@@ -457,7 +456,7 @@ int main()
                                 char line[3000];
                                 int n = read(0, line, 3000);
 
-                                //Save to file
+                                //Save output of 'generate' to file
                                 printf("%s\n", line);
                                 FILE* pFile;
                                 pFile = fopen(filename, "a");
@@ -482,23 +481,103 @@ int main()
                 }
             }
 
-            // NON-IMPLEMENTED CASE : sum | tee <filename>
-            // Prints an error for now
+            // Check if the full command corresponds to 'sum | tee <filename>'
+            // If it corresponds to 'sum | tee <filename>' : fork program, and load the 'sum' Java program with parameter 'pipeout'. We then simulate the 'tee' function, which prints the output of 'sum' to the user, and stores it in a specified text file. 
+            // Upon completion, the program proceeds to the default state
             else if (checkSubstring(commandcpy, sum) == 0) {
 
                 if (checkPipeSymbol(commandcpy) == 1) {
 
-                    printf("%s : Command not recognized\n", commandcpy);
+                    if (checkSubstring(commandcpy, tee) == indexArgTwo) {
+
+                        int pipefd[2];
+                        pipe(pipefd);
+                        pid_t pid1 = fork();
+                        if (pid1 == 0) {
+                            close(pipefd[0]);
+                            close(1);
+                            dup2(pipefd[1], 1);
+                            close(pipefd[1]);
+                            execlp("java", "java", "sum", "pipeout", NULL);
+                        }
+                        else {
+                            waitpid(pid1, NULL, 0);
+                            close(pipefd[1]);
+                            pid_t pid2 = fork();
+                            if (pid2 == 0) {
+                                close(0);
+                                dup2(pipefd[0], 0);
+                                close(pipefd[0]);
+                                usleep(1000);
+                                char line[3000];
+                                int n = read(0, line, 3000);
+
+                                //Save output of 'sum' to file
+                                printf("%s\n", line);
+                                FILE* pFile;
+                                pFile = fopen(filename, "a");
+                                fprintf(pFile, " %s", line);
+                                fclose(pFile);
+                                return 0;
+                            }
+                            else {
+                                {
+                                    close(pipefd[0]);
+                                    waitpid(pid2, NULL, 0);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
-            // NON-IMPLEMENTED CASE : subtract | tee <filename>
-            // Prints an error for now
+            // Check if the full command corresponds to 'subtract | tee <filename>'
+            // If it corresponds to 'subtract | tee <filename>' : fork program, and load the 'subtract' Java program with parameter 'pipeout'. We then simulate the 'tee' function, which prints the output of 'subtract' to the user, and stores it in a specified text file. 
+            // Upon completion, the program proceeds to the default state
             else if (checkSubstring(commandcpy, subtract) == 0) {
 
                 if (checkPipeSymbol(commandcpy) == 1) {
 
-                    printf("%s : Command not recognized\n", commandcpy);
+                    if (checkSubstring(commandcpy, tee) == indexArgTwo) {
+
+                        int pipefd[2];
+                        pipe(pipefd);
+                        pid_t pid1 = fork();
+                        if (pid1 == 0) {
+                            close(pipefd[0]);
+                            close(1);
+                            dup2(pipefd[1], 1);
+                            close(pipefd[1]);
+                            execlp("java", "java", "subtract", "pipeout", NULL);
+                        }
+                        else {
+                            waitpid(pid1, NULL, 0);
+                            close(pipefd[1]);
+                            pid_t pid2 = fork();
+                            if (pid2 == 0) {
+                                close(0);
+                                dup2(pipefd[0], 0);
+                                close(pipefd[0]);
+                                usleep(1000);
+                                char line[3000];
+                                int n = read(0, line, 3000);
+
+                                //Save output of 'subtract' to file
+                                printf("%s\n", line);
+                                FILE* pFile;
+                                pFile = fopen(filename, "a");
+                                fprintf(pFile, " %s", line);
+                                fclose(pFile);
+                                return 0;
+                            }
+                            else {
+                                {
+                                    close(pipefd[0]);
+                                    waitpid(pid2, NULL, 0);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

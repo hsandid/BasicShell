@@ -68,6 +68,7 @@ class sum {
 
                 // Read from stdout, convert strings to the corresponding integer values, and print out the result of their addition
                 // !!! WARNING !! : It seems like this method only supports integer values which are in the 0-9 range. Any input taking more than one-digit will cause issues.
+                // The 'generate' Java program only returns values in the [0,9] range to support this
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 String mvalue = in .readLine();

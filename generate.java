@@ -27,10 +27,10 @@ class generate {
 
         if (args[0].equals("nopipe")) {
 
-            // Generate two random integers and print them on the shell
+            // Generate two random integers in the [0,9] range and print them on the shell
 
             double rd = Math.random();
-            rd = rd * 11;
+            rd = rd * 10;
             int randomInt = (int) rd;
             System.out.println(randomInt);
             rd = Math.random();
@@ -40,10 +40,10 @@ class generate {
 
         } else if (args[0].equals("pipeout")) {
 
-            // Generate two random integers, convert them to strings, and pass them to stdout
+            // Generate two random integers in the [0,9] range, convert them to strings, and pass them to stdout
 
             double rd = Math.random();
-            rd = rd * 11;
+            rd = rd * 10;
             int randomInt1 = (int) rd;
             rd = Math.random();
             rd = rd * 10;

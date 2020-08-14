@@ -2,12 +2,33 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+/*
+|-----------------------------------|
+|------------Basic Shell------------|
+|-----------subtract.java-----------|
+|-----------------------------------|
+|>> Role : Performs a subtraction of|
+| two provided integer values       |
+|>> Shell Command : 'subtract'.     |
+|>> Arguments : Two integer Values. |
+|>> Pipe Support : Input Only       |
+\-----------------------------------/
+*/
 
 class subtract {
 
+    // Main Function
+
     public static void main(String args[]) {
 
+        // Argument passed by the shell is either 'nopipe' or 'pipeout'
+        // If 'nopipe' : No arguments needed when launching the program. The user inputs the two integer values when prompted by the program.
+        // If 'pipein' : Arguments come from the output of another program. The two integer values are read from stdout.
+
         if (args[0].equals("nopipe")) {
+
+            // Prompt the user to enter two integers, check the validity of the user input, and print out the result of their subtraction
+
             int v1 = 0;
             int v2 = 0;
             boolean v1_correct = false;
@@ -42,6 +63,10 @@ class subtract {
             System.out.println(String.valueOf(v1) + " - " + String.valueOf(v2) + " = " + String.valueOf(v1 - v2));
 
         } else if (args[0].equals("pipein")) {
+
+            // Read from stdout, convert strings to the corresponding integer values, and print out the result of their subtraction
+            // !!! WARNING !! : It seems like this method only supports integer values which are in the 0-9 range. Any input taking more than one-digit will cause issues.
+
             try {
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 String mvalue = in .readLine();

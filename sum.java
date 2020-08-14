@@ -2,11 +2,32 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+/*
+|-----------------------------------|
+|------------Basic Shell------------|
+|-------------sum.java--------------|
+|-----------------------------------|
+|>> Role : Performs an addition of  |
+| two provided integer values       |
+|>> Shell Command : 'sum'.          |
+|>> Arguments : Two integer Values. |
+|>> Pipe Support : Input Only       |
+\-----------------------------------/
+*/
 
 class sum {
 
+    // Main Function
+
     public static void main(String args[]) {
+
+        // Argument passed by the shell is either 'nopipe' or 'pipeout'
+        // If 'nopipe' : No arguments needed when launching the program. The user inputs the two integer values when prompted by the program.
+        // If 'pipein' : Arguments come from the output of another program. The two integer values are read from stdout.
+
         if (args[0].equals("nopipe")) {
+
+            // Prompt the user to enter two integers, check the validity of the user input, and print out the result of their addition
 
             int v1 = 0;
             int v2 = 0;
@@ -44,6 +65,9 @@ class sum {
 
         } else if (args[0].equals("pipein")) {
             try {
+
+                // Read from stdout, convert strings to the corresponding integer values, and print out the result of their addition
+                // !!! WARNING !! : It seems like this method only supports integer values which are in the 0-9 range. Any input taking more than one-digit will cause issues.
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 String mvalue = in .readLine();

@@ -1,6 +1,6 @@
 # Basic Shell
 
-This project has been realized in the scope of the course CMPS 272 "Operating Systems", at the American University of Beirut. The main shell is written in C, and calls separate Java files to execute most commands. The shell also supports pipes to re-route output of certain commands as input to other commands.
+This project has been realized in the scope of the course CMPS 272 "Operating Systems", at the American University of Beirut. The main shell is written in C, and calls separate Java files to execute commands. The shell also supports pipes to re-route output of certain commands as input to other commands.
 
 ### Makefile arguments :
 

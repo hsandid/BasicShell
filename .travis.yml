@@ -1,0 +1,8 @@
+matrix:
+  include:
+    - language: C
+      script:
+        - make basic_shell
+    - language: java
+      script:
+        - make subtract sum ls generate
